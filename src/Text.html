@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+  <title>Title</title>
+</head>
+<body>
+
+<button onclick="send()">提交
+</button>
+
+</body>
+
+<script>
+
+  function send() {
+
+    let data = {
+      "campusAddress": "徐汇街道",
+      "code": " 4902",
+      "collegeName": "江苏",
+      "companyDname": "徐汇校区",
+      "grade": "2020",
+      "idCode": "12345678",
+      "idType": "1",
+      "major": "卖萌",
+      "mobile": "15900400272",
+      "name": " 小爱",
+      "schoolCommunity": "外滩街道社区卫生服务中心",
+      "schoolDname": "黄浦区",
+      "sex": "男"
+    };
+    //
+    // $.ajax({
+    //   url: 'http://localhost:8080/eduHealth/api/serviceCentreApi.jsp',
+    //   // url: '/api/clientApi/company/infection/exception_report',
+    //   type: 'post',
+    //   // dataType: 'jsonp',
+    //   dataType: 'json',
+    //   crossDomain: true,
+    //   // processData: false,
+    //   success: function (data) {
+    //     console.log(data);
+    //   },
+    //   error: function (xhr, type) {
+    //     console.log(xhr, type);
+    //   }
+    // });
+
+    $.ajax({
+      // url: 'http://localhost:8080/eduHealth/clientApi/company/infection/getExceptionStatistics?type=1&beginDate=2020-05-15',
+      url: 'http://39.98.126.186/eduHealthTest/clientApi/company/infection/getExceptionStatistics?type=1&beginDate=2020-06-10',
+
+      // url: '/api/clientApi/company/infection/exception_report',
+      type: 'get',
+      // dataType: 'jsonp',
+      cache: false,//不缓存当前页面
+      dataType: "json",
+      // xhrFields: {
+      //   withCredentials: false//跨域请求时发送cookie
+      // },
+      crossDomain: true,//跨域
+      success: function (data) {
+        console.log(data);
+      },
+      error: function (xhr, type) {
+        console.log(xhr, type);
+      }
+    });
+
+
+  }
+
+</script>
+
+</html>
