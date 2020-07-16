@@ -51,14 +51,20 @@ export const systemMonitorRouter = {
   redirect: 'noRedirect',
   name: 'SystemMange',
   meta: {
-    title: '系统管理',
+    title: '系统监控',
     icon: 'chart'
   },
   children: [
     {
-      path: 'http://localhost:1117/druid',
+      path: 'http://localhost:1218/api/druid',
       name: 'DictManage',
-      meta: { title: '数据监控', authority: 'system:manage:dict' }
+      meta: { title: '数据监控' }
+    },
+    {
+      path: 'log',
+      component: () => import('@/views/system/log'),
+      name: 'LogManage',
+      meta: { title: '操作日志', authority: 'system:manage:log' }
     }
   ]
 }
