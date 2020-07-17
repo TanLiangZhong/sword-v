@@ -1,11 +1,11 @@
 <template>
   <div class="login-container">
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" autocomplete="on"
-             label-position="left"
+             label-position="left" @keyup.enter.native="handleLogin"
     >
 
       <div class="title-container">
-        <h3 class="title">用户登录</h3>
+        <h3 class="title">Login</h3>
       </div>
 
       <el-form-item prop="username">
@@ -15,13 +15,36 @@
         <el-input
           ref="username"
           v-model="loginForm.username"
-          placeholder="登录帐号"
+          placeholder="username"
           name="username"
           type="text"
           tabindex="1"
-          autocomplete="on"
+          auto-complete="off"
         />
       </el-form-item>
+
+      <el-tooltip v-model="capsTooltip" content="Caps lock is On" placement="right" manual>
+        <el-form-item prop="password">
+          <span class="svg-container">
+            <svg-icon icon-class="password" />
+          </span>
+          <el-input
+            :key="passwordType"
+            ref="password"
+            v-model="loginForm.password"
+            :type="passwordType"
+            placeholder="password"
+            name="password"
+            tabindex="3"
+            auto-complete="off"
+            @keyup.native="checkCapslock"
+            @blur="capsTooltip = false"
+          />
+          <span class="show-pwd" @click="showPwd">
+            <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
+          </span>
+        </el-form-item>
+      </el-tooltip>
 
       <el-form-item prop="code">
         <span class="svg-container">
@@ -35,41 +58,16 @@
           tabindex="2"
           type="text"
           auto-complete="off"
-          placeholder="验证码"
-          @keyup.enter.native="handleLogin"
+          placeholder="captcha"
         />
         <img :src="img" style="float:right;width:100px;height:40px;margin-top:5px;margin-right:5px;"
              title="点击更换" alt="验证码" @click="codeMaker"
         >
       </el-form-item>
 
-      <el-tooltip v-model="capsTooltip" content="Caps lock is On" placement="right" manual>
-        <el-form-item prop="password">
-          <span class="svg-container">
-            <svg-icon icon-class="password" />
-          </span>
-          <el-input
-            :key="passwordType"
-            ref="password"
-            v-model="loginForm.password"
-            :type="passwordType"
-            placeholder="登录密码"
-            name="password"
-            tabindex="3"
-            autocomplete="on"
-            @keyup.native="checkCapslock"
-            @blur="capsTooltip = false"
-            @keyup.enter.native="handleLogin"
-          />
-          <span class="show-pwd" @click="showPwd">
-            <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
-          </span>
-        </el-form-item>
-      </el-tooltip>
-
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;"
+      <el-button size="medium" :loading="loading" type="primary" style="width:100%;margin-bottom:30px;background-color:transparent;border: #ffffff solid 1px;"
                  @click.native.prevent="handleLogin"
-      >登录
+      >登 录
       </el-button>
 
       <div style="position:relative">
@@ -285,7 +283,7 @@ export default {
       position: relative;
       width: 520px;
       max-width: 100%;
-      padding: 160px 35px 0;
+      padding: 170px 35px 0;
       margin: 0 auto;
       overflow: hidden;
     }
