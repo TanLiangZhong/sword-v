@@ -35,12 +35,6 @@ export const systemManagerRouter = {
       component: () => import('@/views/system/dict/index'),
       name: 'DictManage',
       meta: { title: '数据字典', authority: 'system:manage:dict' }
-    },
-    {
-      path: 'log',
-      component: () => import('@/views/system/log'),
-      name: 'LogManage',
-      meta: { title: '操作日志', authority: 'system:manage:log' }
     }
   ]
 }
