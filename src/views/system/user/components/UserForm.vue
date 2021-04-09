@@ -10,14 +10,6 @@
   >
     <el-main>
       <el-form ref="form" label-width="80px" :model="form" :rules="rules" :disabled="formEdit" style="width: 70%">
-        <el-form-item label="头像" prop="avatar">
-          <AliOSSUpload class="avatar-uploader" action="AliOSS" :show-file-list="false"
-                        :on-success="handleSuccess"
-          >
-            <img v-if="form.avatar" :src="form.avatar" class="avatar">
-            <i v-else class="el-icon-plus avatar-uploader-icon" />
-          </AliOSSUpload>
-        </el-form-item>
         <el-form-item label="昵称" prop="nickname">
           <el-input v-model="form.nickname" placeholder="请输入昵称" :maxlength="16" />
         </el-form-item>
@@ -60,11 +52,9 @@
 <script>
 import { save } from '@/api/sys/user'
 import { deepClone } from '@/utils'
-import AliOSSUpload from '../../../../components/AliOSSUpload/index'
 
 export default {
   name: 'UserForm',
-  components: { AliOSSUpload },
   data() {
     return {
       permissions: {

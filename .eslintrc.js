@@ -17,8 +17,8 @@ module.exports = {
     "vue/max-attributes-per-line": [2, {
       "singleline": 10,
       "multiline": {
-        "max": 10,
-        "allowFirstLine": true
+        "max": 1,
+        "allowFirstLine": false
       }
     }],
     "vue/singleline-html-element-content-newline": "off",
@@ -190,11 +190,9 @@ module.exports = {
     'yoda': [2, 'never'],
     'prefer-const': 2,
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
-    'object-curly-spacing': [1, 'always', {
+    'object-curly-spacing': [2, 'always', {
       objectsInObjects: false
     }],
-    'array-bracket-spacing': [2, 'never'],
-    'no-async-promise-executor': 'off',
-    'no-prototype-builtins': 'off'
+    'array-bracket-spacing': [2, 'never']
   }
 }

@@ -1,28 +1,30 @@
 <template>
   <div class="dashboard-container">
-    <component :is="currentRole" />
+    <div class="dashboard-text">name: {{ name }}</div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import editorDashboard from './editor'
 
 export default {
   name: 'Dashboard',
-  components: { editorDashboard },
-  data() {
-    return {
-      currentRole: 'editorDashboard'
-    }
-  },
   computed: {
     ...mapGetters([
-      'roles'
+      'name'
     ])
-  },
-  created() {
-
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.dashboard {
+  &-container {
+    margin: 30px;
+  }
+  &-text {
+    font-size: 30px;
+    line-height: 46px;
+  }
+}
+</style>
